@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="65" id="K3p-co-SaN" customClass="SongCell" customModule="MediaStreamerClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K3p-co-SaN" id="cea-fU-WCR">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNb-TJ-uMm">
+                        <rect key="frame" x="18" y="22" width="50" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="ogt-k7-VF6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Length" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aj2-m8-bTd">
+                        <rect key="frame" x="262" y="25" width="50" height="14.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="qfA-k0-ey0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.53314393939393945" green="0.53314393939393945" blue="0.53314393939393945" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="aj2-m8-bTd" firstAttribute="top" secondItem="nNb-TJ-uMm" secondAttribute="bottom" constant="8" id="6Iv-ak-gmp"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aj2-m8-bTd" secondAttribute="trailing" id="Hls-zR-Sw2"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="nNb-TJ-uMm" secondAttribute="leading" id="MVF-Cv-asf"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="nNb-TJ-uMm" secondAttribute="trailing" id="ODP-Se-3FU"/>
+                    <constraint firstAttribute="topMargin" secondItem="nNb-TJ-uMm" secondAttribute="top" id="QAe-dj-cHo"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="aj2-m8-bTd" secondAttribute="bottom" constant="8" id="QHL-i9-LMi"/>
+                    <constraint firstItem="aj2-m8-bTd" firstAttribute="top" secondItem="nNb-TJ-uMm" secondAttribute="bottom" constant="8" id="Wiw-7S-v3f"/>
+                    <constraint firstItem="nNb-TJ-uMm" firstAttribute="width" secondItem="cea-fU-WCR" secondAttribute="width" id="XOk-O4-I5Y"/>
+                    <constraint firstItem="aj2-m8-bTd" firstAttribute="width" secondItem="cea-fU-WCR" secondAttribute="width" id="Yek-zk-9qI"/>
+                    <constraint firstItem="nNb-TJ-uMm" firstAttribute="centerY" secondItem="cea-fU-WCR" secondAttribute="centerY" id="b1a-Lf-aHr"/>
+                    <constraint firstItem="aj2-m8-bTd" firstAttribute="centerY" secondItem="cea-fU-WCR" secondAttribute="centerY" id="boZ-cy-wA6"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="nNb-TJ-uMm" secondAttribute="leading" constant="-10" id="cW4-sJ-8HH"/>
+                    <constraint firstItem="nNb-TJ-uMm" firstAttribute="centerY" secondItem="aj2-m8-bTd" secondAttribute="centerY" id="kOa-5Z-li8"/>
+                    <constraint firstItem="aj2-m8-bTd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nNb-TJ-uMm" secondAttribute="trailing" constant="10" id="ki0-NI-4pk"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="aj2-m8-bTd" secondAttribute="leading" id="m2m-2Z-IbG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aj2-m8-bTd" secondAttribute="trailing" id="o7p-AB-yBt"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="MVF-Cv-asf"/>
+                        <exclude reference="ODP-Se-3FU"/>
+                        <exclude reference="QAe-dj-cHo"/>
+                        <exclude reference="XOk-O4-I5Y"/>
+                        <exclude reference="kOa-5Z-li8"/>
+                        <exclude reference="6Iv-ak-gmp"/>
+                        <exclude reference="QHL-i9-LMi"/>
+                        <exclude reference="Wiw-7S-v3f"/>
+                        <exclude reference="Yek-zk-9qI"/>
+                        <exclude reference="m2m-2Z-IbG"/>
+                        <exclude reference="o7p-AB-yBt"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="length" destination="aj2-m8-bTd" id="ddN-36-lvc"/>
+                <outlet property="title" destination="nNb-TJ-uMm" id="Z8Y-zm-xRF"/>
+            </connections>
+            <point key="canvasLocation" x="679" y="-203.5"/>
+        </tableViewCell>
+    </objects>
+</document>

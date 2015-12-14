@@ -15,6 +15,17 @@
 		A01ABDC01C0503A0003E9567 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01ABDBE1C0503A0003E9567 /* LaunchScreen.storyboard */; };
 		A01ABDCB1C0503A0003E9567 /* MediaStreamerClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDCA1C0503A0003E9567 /* MediaStreamerClientTests.swift */; };
 		A01ABDD61C0503A0003E9567 /* MediaStreamerClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDD51C0503A0003E9567 /* MediaStreamerClientUITests.swift */; };
+		A01ABDE41C052F4D003E9567 /* ArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDE31C052F4D003E9567 /* ArtistsViewController.swift */; };
+		A01ABDEA1C057B36003E9567 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDE91C057B35003E9567 /* Artist.swift */; };
+		A01ABDEC1C057BA4003E9567 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDEB1C057BA4003E9567 /* DataManager.swift */; };
+		A01ABDEE1C057CE3003E9567 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDED1C057CE3003E9567 /* SwiftyJSON.swift */; };
+		A01ABDF01C062B1F003E9567 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDEF1C062B1F003E9567 /* AlbumsViewController.swift */; };
+		A01ABDF21C066167003E9567 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDF11C066167003E9567 /* Album.swift */; };
+		A01ABDF41C06D7E4003E9567 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDF31C06D7E4003E9567 /* Song.swift */; };
+		A01ABDF81C07B5E5003E9567 /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ABDF71C07B5E5003E9567 /* SongsTableViewController.swift */; };
+		A067F11A1C08FA1D00B8A886 /* SongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A067F1191C08FA1D00B8A886 /* SongsViewController.swift */; };
+		A0C3A6BE1C0E53AD004EC7D1 /* SongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0C3A6BD1C0E53AD004EC7D1 /* SongCell.xib */; };
+		A0C3A6C01C0E5743004EC7D1 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C3A6BF1C0E5743004EC7D1 /* SongCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +60,17 @@
 		A01ABDD11C0503A0003E9567 /* MediaStreamerClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediaStreamerClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01ABDD51C0503A0003E9567 /* MediaStreamerClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaStreamerClientUITests.swift; sourceTree = "<group>"; };
 		A01ABDD71C0503A0003E9567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A01ABDE31C052F4D003E9567 /* ArtistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistsViewController.swift; sourceTree = "<group>"; };
+		A01ABDE91C057B35003E9567 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		A01ABDEB1C057BA4003E9567 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A01ABDED1C057CE3003E9567 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		A01ABDEF1C062B1F003E9567 /* AlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
+		A01ABDF11C066167003E9567 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		A01ABDF31C06D7E4003E9567 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		A01ABDF71C07B5E5003E9567 /* SongsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
+		A067F1191C08FA1D00B8A886 /* SongsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsViewController.swift; sourceTree = "<group>"; };
+		A0C3A6BD1C0E53AD004EC7D1 /* SongCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongCell.xib; sourceTree = "<group>"; };
+		A0C3A6BF1C0E5743004EC7D1 /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +121,24 @@
 		A01ABDB11C0503A0003E9567 /* MediaStreamerClient */ = {
 			isa = PBXGroup;
 			children = (
+				A01ABDBC1C0503A0003E9567 /* Assets.xcassets */,
+				A01ABDB91C0503A0003E9567 /* MediaStreamerClient.xcdatamodeld */,
+				A01ABDC11C0503A0003E9567 /* Info.plist */,
+				A01ABDBE1C0503A0003E9567 /* LaunchScreen.storyboard */,
+				A01ABDB61C0503A0003E9567 /* Main.storyboard */,
 				A01ABDB21C0503A0003E9567 /* AppDelegate.swift */,
 				A01ABDB41C0503A0003E9567 /* ViewController.swift */,
-				A01ABDB61C0503A0003E9567 /* Main.storyboard */,
-				A01ABDBC1C0503A0003E9567 /* Assets.xcassets */,
-				A01ABDBE1C0503A0003E9567 /* LaunchScreen.storyboard */,
-				A01ABDC11C0503A0003E9567 /* Info.plist */,
-				A01ABDB91C0503A0003E9567 /* MediaStreamerClient.xcdatamodeld */,
+				A01ABDE31C052F4D003E9567 /* ArtistsViewController.swift */,
+				A01ABDEF1C062B1F003E9567 /* AlbumsViewController.swift */,
+				A067F1191C08FA1D00B8A886 /* SongsViewController.swift */,
+				A01ABDF71C07B5E5003E9567 /* SongsTableViewController.swift */,
+				A01ABDE91C057B35003E9567 /* Artist.swift */,
+				A01ABDF11C066167003E9567 /* Album.swift */,
+				A01ABDF31C06D7E4003E9567 /* Song.swift */,
+				A01ABDEB1C057BA4003E9567 /* DataManager.swift */,
+				A01ABDED1C057CE3003E9567 /* SwiftyJSON.swift */,
+				A0C3A6BD1C0E53AD004EC7D1 /* SongCell.xib */,
+				A0C3A6BF1C0E5743004EC7D1 /* SongCell.swift */,
 			);
 			path = MediaStreamerClient;
 			sourceTree = "<group>";
@@ -196,6 +229,12 @@
 				TargetAttributes = {
 					A01ABDAE1C0503A0003E9567 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = F94FTZ4GT2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A01ABDC51C0503A0003E9567 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -232,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C3A6BE1C0E53AD004EC7D1 /* SongCell.xib in Resources */,
 				A01ABDC01C0503A0003E9567 /* LaunchScreen.storyboard in Resources */,
 				A01ABDBD1C0503A0003E9567 /* Assets.xcassets in Resources */,
 				A01ABDB81C0503A0003E9567 /* Main.storyboard in Resources */,
@@ -259,9 +299,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A01ABDF81C07B5E5003E9567 /* SongsTableViewController.swift in Sources */,
+				A067F11A1C08FA1D00B8A886 /* SongsViewController.swift in Sources */,
+				A01ABDF01C062B1F003E9567 /* AlbumsViewController.swift in Sources */,
+				A0C3A6C01C0E5743004EC7D1 /* SongCell.swift in Sources */,
 				A01ABDBB1C0503A0003E9567 /* MediaStreamerClient.xcdatamodeld in Sources */,
+				A01ABDEC1C057BA4003E9567 /* DataManager.swift in Sources */,
 				A01ABDB51C0503A0003E9567 /* ViewController.swift in Sources */,
+				A01ABDF41C06D7E4003E9567 /* Song.swift in Sources */,
 				A01ABDB31C0503A0003E9567 /* AppDelegate.swift in Sources */,
+				A01ABDF21C066167003E9567 /* Album.swift in Sources */,
+				A01ABDEE1C057CE3003E9567 /* SwiftyJSON.swift in Sources */,
+				A01ABDE41C052F4D003E9567 /* ArtistsViewController.swift in Sources */,
+				A01ABDEA1C057B36003E9567 /* Artist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,10 +453,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MediaStreamerClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = seaneshbaugh.MediaStreamerClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -414,10 +469,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MediaStreamerClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = seaneshbaugh.MediaStreamerClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -488,6 +548,7 @@
 				A01ABDDC1C0503A0003E9567 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A01ABDDD1C0503A0003E9567 /* Build configuration list for PBXNativeTarget "MediaStreamerClientTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +557,7 @@
 				A01ABDDF1C0503A0003E9567 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A01ABDE01C0503A0003E9567 /* Build configuration list for PBXNativeTarget "MediaStreamerClientUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +566,7 @@
 				A01ABDE21C0503A0003E9567 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
