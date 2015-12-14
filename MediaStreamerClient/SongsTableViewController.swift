@@ -97,14 +97,6 @@ class SongsTableViewController: UITableViewController {
         songsViewController.selectedSong = self.selectedSong
         
         songsViewController.playSong(self.selectedSong!)
-        
-//        let escapedURL = self.selectedSong!.url!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-//        
-//        let songsViewController = self.parentViewController as! SongsViewController
-//        
-//        songsViewController.selectedSong = self.selectedSong
-//        
-//        songsViewController.playSong(escapedURL)
     }
 
     /*

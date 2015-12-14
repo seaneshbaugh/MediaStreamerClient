@@ -1,7 +1,7 @@
 import UIKit
 import MediaPlayer
 
-class SongsViewController: UIViewController { //, UITableViewDataSource, UITableViewDelegate {
+class SongsViewController: UIViewController {
     @IBOutlet weak var songsTableView: UIView!
     
     @IBOutlet weak var currentSongTitle: UILabel!
@@ -23,8 +23,6 @@ class SongsViewController: UIViewController { //, UITableViewDataSource, UITable
     var album: Album?
 
     var selectedSong: Song?
-    
-    var avPlayer: AVPlayer?
     
     var draggingProgress = false
     
@@ -113,10 +111,12 @@ class SongsViewController: UIViewController { //, UITableViewDataSource, UITable
     
     func playSong(song: Song) -> Void {
         let escapedURL = song.url!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-
-        self.avPlayer = AVPlayer(URL: NSURL(string: escapedURL)!)
         
-        self.avPlayer!.play()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
+        appDelegate.avPlayer = AVPlayer(URL: NSURL(string: escapedURL)!)
+
+        appDelegate.avPlayer!.play()
         
         self.currentSongTitle.text = self.selectedSong!.title
         
@@ -130,23 +130,23 @@ class SongsViewController: UIViewController { //, UITableViewDataSource, UITable
         
         self.playPauseButton.setImage(UIImage(named: "pause.png"), forState: .Normal)
         
-        self.avPlayer!.addPeriodicTimeObserverForInterval(CMTimeMakeWithSeconds(0.016, 1000), queue: dispatch_get_main_queue()) { (CMTime) -> Void in
+        appDelegate.avPlayer!.addPeriodicTimeObserverForInterval(CMTimeMakeWithSeconds(0.016, 1000), queue: dispatch_get_main_queue()) { (CMTime) -> Void in
 
-            let currentTime = Int(self.avPlayer!.currentTime().value) / Int(self.avPlayer!.currentTime().timescale)
+            let currentTime = Int(appDelegate.avPlayer!.currentTime().value) / Int(appDelegate.avPlayer!.currentTime().timescale)
             
             self.currentSongTime.text = String(format: "%d:%02d", currentTime / 60, currentTime % 60)
             
             if !self.draggingProgress {
-                self.currentSongProgress.value = Float(self.avPlayer!.currentTime().value) / Float(self.avPlayer!.currentTime().timescale)
+                self.currentSongProgress.value = Float(appDelegate.avPlayer!.currentTime().value) / Float(appDelegate.avPlayer!.currentTime().timescale)
             }
         }
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songFinishedPlaying:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.avPlayer!.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songFinishedPlaying:", name: AVPlayerItemDidPlayToEndTimeNotification, object: appDelegate.avPlayer!.currentItem)
     }
     
     @IBAction func previousSong(sender: AnyObject) {
         let currentIndexPath = self.songsTableViewController.tableView.indexPathForSelectedRow
-        
+
         var nextRow = currentIndexPath!.row - 1
         
         if nextRow < 0 {
@@ -185,13 +185,15 @@ class SongsViewController: UIViewController { //, UITableViewDataSource, UITable
     }
     
     @IBAction func playPauseSong(sender: AnyObject) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
         if self.selectedSong != nil{
-            if self.avPlayer!.rate != 0 && self.avPlayer!.error == nil {
-                self.avPlayer!.pause()
+            if appDelegate.avPlayer!.rate != 0 && appDelegate.avPlayer!.error == nil {
+                appDelegate.avPlayer!.pause()
                 
                 self.playPauseButton.setImage(UIImage(named: "play.png"), forState: .Normal)
             } else {
-                self.avPlayer!.play()
+                appDelegate.avPlayer!.play()
                 
                 self.playPauseButton.setImage(UIImage(named: "pause.png"), forState: .Normal)
             }
@@ -203,11 +205,13 @@ class SongsViewController: UIViewController { //, UITableViewDataSource, UITable
     }
     
     @IBAction func currentSongProgressDragEnd(sender: AnyObject) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
         self.draggingProgress = false
         
         let slider = sender as! UISlider
         
-        self.avPlayer!.seekToTime(CMTimeMake(Int64(slider.value), 1))
+        appDelegate.avPlayer!.seekToTime(CMTimeMake(Int64(slider.value), 1))
     }
     
     func songFinishedPlaying(note: NSNotification) {
