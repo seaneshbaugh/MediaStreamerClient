@@ -33,7 +33,7 @@ class SongsViewController: UIViewController {
         
         self.songsTableViewController = SongsTableViewController()
         
-        self.songsTableViewController.willMoveToParentViewController(self)
+        self.songsTableViewController.willMove(toParentViewController: self)
         
         self.addChildViewController(self.songsTableViewController)
         
@@ -41,7 +41,7 @@ class SongsViewController: UIViewController {
         
         self.songsTableView.addSubview(self.songsTableViewController.view)
         
-        self.songsTableViewController.didMoveToParentViewController(self)
+        self.songsTableViewController.didMove(toParentViewController: self)
         
         self.refresh()
     }
@@ -67,7 +67,7 @@ class SongsViewController: UIViewController {
         DataManager.getAlbums(self.album!.url! + "/albumart", success: { (imageData) -> Void in
             // TODO: Figure out a way to reference the subview that doesn't involve magically knowing its index.
             
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 let imageView = self.view.subviews[0] as! UIImageView
             
                 let image = UIImage(data: imageData!)
@@ -109,12 +109,12 @@ class SongsViewController: UIViewController {
         })
     }
     
-    func playSong(song: Song) -> Void {
-        let escapedURL = song.url!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+    func playSong(_ song: Song) -> Void {
+        let escapedURL = song.url!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-        appDelegate.avPlayer = AVPlayer(URL: NSURL(string: escapedURL)!)
+        appDelegate.avPlayer = AVPlayer(url: URL(string: escapedURL)!)
 
         appDelegate.avPlayer!.play()
         
@@ -122,15 +122,15 @@ class SongsViewController: UIViewController {
         
         self.currentSongTime.text = "0:00"
         
-        self.currentSongProgress.enabled = true
+        self.currentSongProgress.isEnabled = true
         
         self.currentSongProgress.value = 0.0
         
         self.currentSongProgress.maximumValue = Float((self.selectedSong?.length!)!)
         
-        self.playPauseButton.setImage(UIImage(named: "pause.png"), forState: .Normal)
+        self.playPauseButton.setImage(UIImage(named: "pause.png"), for: UIControlState())
         
-        appDelegate.avPlayer!.addPeriodicTimeObserverForInterval(CMTimeMakeWithSeconds(0.016, 1000), queue: dispatch_get_main_queue()) { (CMTime) -> Void in
+        appDelegate.avPlayer!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.016, 1000), queue: DispatchQueue.main) { (CMTime) -> Void in
 
             let currentTime = Int(appDelegate.avPlayer!.currentTime().value) / Int(appDelegate.avPlayer!.currentTime().timescale)
             
@@ -141,21 +141,21 @@ class SongsViewController: UIViewController {
             }
         }
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "songFinishedPlaying:", name: AVPlayerItemDidPlayToEndTimeNotification, object: appDelegate.avPlayer!.currentItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(SongsViewController.songFinishedPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: appDelegate.avPlayer!.currentItem)
     }
     
-    @IBAction func previousSong(sender: AnyObject) {
+    @IBAction func previousSong(_ sender: AnyObject) {
         let currentIndexPath = self.songsTableViewController.tableView.indexPathForSelectedRow
 
-        var nextRow = currentIndexPath!.row - 1
+        var nextRow = (currentIndexPath! as NSIndexPath).row - 1
         
         if nextRow < 0 {
             nextRow = self.album!.songs!.count - 1
         }
         
-        let nextIndexPath = NSIndexPath(forRow: nextRow, inSection: 0)
+        let nextIndexPath = IndexPath(row: nextRow, section: 0)
         
-        self.songsTableViewController.tableView.selectRowAtIndexPath(nextIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.Middle)
+        self.songsTableViewController.tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.middle)
         
         self.songsTableViewController.selectedSong = self.songsTableViewController.songs[nextRow]
         
@@ -164,18 +164,18 @@ class SongsViewController: UIViewController {
         self.playSong(self.songsTableViewController.selectedSong!)
     }
     
-    @IBAction func nextSong(sender: AnyObject) {
+    @IBAction func nextSong(_ sender: AnyObject) {
         let currentIndexPath = self.songsTableViewController.tableView.indexPathForSelectedRow
         
-        var nextRow = currentIndexPath!.row + 1
+        var nextRow = (currentIndexPath! as NSIndexPath).row + 1
         
         if nextRow >= self.album!.songs!.count {
             nextRow = 0
         }
 
-        let nextIndexPath = NSIndexPath(forRow: nextRow, inSection: 0)
+        let nextIndexPath = IndexPath(row: nextRow, section: 0)
     
-        self.songsTableViewController.tableView.selectRowAtIndexPath(nextIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.Middle)
+        self.songsTableViewController.tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.middle)
         
         self.songsTableViewController.selectedSong = self.songsTableViewController.songs[nextRow]
         
@@ -184,37 +184,37 @@ class SongsViewController: UIViewController {
         self.playSong(self.songsTableViewController.selectedSong!)
     }
     
-    @IBAction func playPauseSong(sender: AnyObject) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    @IBAction func playPauseSong(_ sender: AnyObject) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
         if self.selectedSong != nil{
             if appDelegate.avPlayer!.rate != 0 && appDelegate.avPlayer!.error == nil {
                 appDelegate.avPlayer!.pause()
                 
-                self.playPauseButton.setImage(UIImage(named: "play.png"), forState: .Normal)
+                self.playPauseButton.setImage(UIImage(named: "play.png"), for: UIControlState())
             } else {
                 appDelegate.avPlayer!.play()
                 
-                self.playPauseButton.setImage(UIImage(named: "pause.png"), forState: .Normal)
+                self.playPauseButton.setImage(UIImage(named: "pause.png"), for: UIControlState())
             }
         }
     }
 
-    @IBAction func currentSongProgressDragStart(sender: AnyObject) {
+    @IBAction func currentSongProgressDragStart(_ sender: AnyObject) {
         self.draggingProgress = true
     }
     
-    @IBAction func currentSongProgressDragEnd(sender: AnyObject) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    @IBAction func currentSongProgressDragEnd(_ sender: AnyObject) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
         self.draggingProgress = false
         
         let slider = sender as! UISlider
         
-        appDelegate.avPlayer!.seekToTime(CMTimeMake(Int64(slider.value), 1))
+        appDelegate.avPlayer!.seek(to: CMTimeMake(Int64(slider.value), 1))
     }
     
-    func songFinishedPlaying(note: NSNotification) {
+    func songFinishedPlaying(_ note: Notification) {
         self.nextSong(self.nextButton)
     }
 }

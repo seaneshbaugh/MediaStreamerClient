@@ -28,18 +28,18 @@ class AlbumsViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albums.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AlbumCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath)
         
-        let album = albums[indexPath.row] as Album
+        let album = albums[(indexPath as NSIndexPath).row] as Album
         
         cell.textLabel?.text = album.name
         
@@ -95,23 +95,23 @@ class AlbumsViewController: UITableViewController {
     }
     */
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
         
-        self.selectedAlbum = albums[indexPath.row] as Album
+        self.selectedAlbum = albums[(indexPath as NSIndexPath).row] as Album
         
-        performSegueWithIdentifier("albumsToSongsSegue", sender: self)
+        performSegue(withIdentifier: "albumsToSongsSegue", sender: self)
     }
 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "albumsToSongsSegue" {
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             
             let songsViewController = navigationController.topViewController as! SongsViewController
             
@@ -167,12 +167,12 @@ class AlbumsViewController: UITableViewController {
                 }
             }
             
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.tableView.reloadData();
             }
         })
     }
     
-    @IBAction func cancelToAlbumsViewController(segue: UIStoryboardSegue) {
+    @IBAction func cancelToAlbumsViewController(_ segue: UIStoryboardSegue) {
     }
 }

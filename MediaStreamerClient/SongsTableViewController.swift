@@ -21,7 +21,7 @@ class SongsTableViewController: UITableViewController {
 
         let nibName = UINib(nibName: "SongCell", bundle: nil)
         
-        self.tableView.registerNib(nibName, forCellReuseIdentifier: "SongCell")
+        self.tableView.register(nibName, forCellReuseIdentifier: "SongCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,19 +31,19 @@ class SongsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
     }
 
     //func cellForRowAtIndexPath(_ indexPath: NSIndexPath) -> UITableViewCell?
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SongCell", forIndexPath: indexPath) as! SongCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as! SongCell
         
-        let song = songs[indexPath.row] as Song
+        let song = songs[(indexPath as NSIndexPath).row] as Song
         
         cell.title.text = song.title
         
@@ -87,12 +87,12 @@ class SongsTableViewController: UITableViewController {
     }
     */
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow!
         
-        self.selectedSong = self.songs[indexPath.row] as Song
+        self.selectedSong = self.songs[(indexPath as NSIndexPath).row] as Song
         
-        let songsViewController = self.parentViewController as! SongsViewController
+        let songsViewController = self.parent as! SongsViewController
         
         songsViewController.selectedSong = self.selectedSong
         
@@ -110,7 +110,7 @@ class SongsTableViewController: UITableViewController {
     */
 
     func refresh() -> Void {
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.tableView.reloadData();
         }
     }
