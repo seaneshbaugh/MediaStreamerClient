@@ -8,6 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var avPlayer: AVPlayer?
 
+    var serverAddress: String?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -24,6 +26,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         UIApplication.shared.beginReceivingRemoteControlEvents()
+
+        self.loadServerAddress()
+
+        if self.serverAddress == nil {
+            if self.window!.rootViewController as? UITabBarController != nil {
+                let tabBarController = self.window!.rootViewController as! UITabBarController
+
+                tabBarController.selectedIndex = 1
+
+                if let items = tabBarController.tabBar.items {
+                    items[0].isEnabled = false
+                }
+            }
+        }
 
         return true
     }
@@ -111,6 +127,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let nserror = error as NSError
                 NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
                 abort()
+            }
+        }
+    }
+
+    func loadServerAddress() {
+        let settings = UserDefaults.standard
+
+        if let serverAddress = settings.string(forKey: "serverAddress") {
+            self.serverAddress = serverAddress
+        }
+    }
+
+    func saveServerAddress(_ serverAddress: String?) {
+        if serverAddress != nil {
+            let settings = UserDefaults.standard
+
+            settings.setValue(serverAddress, forKey: "serverAddress")
+
+            if self.window!.rootViewController as? UITabBarController != nil {
+                let tabBarController = self.window!.rootViewController as! UITabBarController
+
+                if let items = tabBarController.tabBar.items {
+                    items[0].isEnabled = true
+                }
             }
         }
     }

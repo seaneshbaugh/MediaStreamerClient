@@ -1,7 +1,12 @@
 import Foundation
+import UIKit
 
 class DataManager {
-    static let baseURL = "http://70.121.54.117:4567/api/v1"
+    class func baseURL() -> String {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+        return "\(appDelegate.serverAddress!)/api/v1"
+    }
     
     class func loadDataFromURL(_ url: URL, completion:@escaping (_ data: Data?, _ error: NSError?) -> Void) {
         let session = URLSession.shared
@@ -26,7 +31,7 @@ class DataManager {
     }
     
     class func getArtists(_ success: @escaping ((_ artistsData: Data?) -> Void)) {
-        loadDataFromURL(URL(string: baseURL)!, completion: {(data, error) -> Void in
+        loadDataFromURL(URL(string: baseURL())!, completion: {(data, error) -> Void in
             if let urlData = data {
                 success(urlData)
             }
