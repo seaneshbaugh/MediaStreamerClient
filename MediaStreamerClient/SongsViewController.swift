@@ -33,15 +33,15 @@ class SongsViewController: UIViewController {
         
         self.songsTableViewController = SongsTableViewController()
         
-        self.songsTableViewController.willMove(toParentViewController: self)
+        self.songsTableViewController.willMove(toParent: self)
         
-        self.addChildViewController(self.songsTableViewController)
+        self.addChild(self.songsTableViewController)
         
         self.songsTableViewController.view.frame = self.songsTableView.bounds
         
         self.songsTableView.addSubview(self.songsTableViewController.view)
         
-        self.songsTableViewController.didMove(toParentViewController: self)
+        self.songsTableViewController.didMove(toParent: self)
         
         self.refresh()
     }
@@ -128,9 +128,9 @@ class SongsViewController: UIViewController {
         
         self.currentSongProgress.maximumValue = Float((self.selectedSong?.length!)!)
         
-        self.playPauseButton.setImage(UIImage(named: "pause.png"), for: UIControlState())
+        self.playPauseButton.setImage(UIImage(named: "pause.png"), for: UIControl.State())
         
-        appDelegate.avPlayer!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.016, 1000), queue: DispatchQueue.main) { (CMTime) -> Void in
+        appDelegate.avPlayer!.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.016, preferredTimescale: 1000), queue: DispatchQueue.main) { (CMTime) -> Void in
 
             let currentTime = Int(appDelegate.avPlayer!.currentTime().value) / Int(appDelegate.avPlayer!.currentTime().timescale)
             
@@ -155,7 +155,7 @@ class SongsViewController: UIViewController {
         
         let nextIndexPath = IndexPath(row: nextRow, section: 0)
         
-        self.songsTableViewController.tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.middle)
+        self.songsTableViewController.tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
         
         self.songsTableViewController.selectedSong = self.songsTableViewController.songs[nextRow]
         
@@ -175,7 +175,7 @@ class SongsViewController: UIViewController {
 
         let nextIndexPath = IndexPath(row: nextRow, section: 0)
     
-        self.songsTableViewController.tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.middle)
+        self.songsTableViewController.tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
         
         self.songsTableViewController.selectedSong = self.songsTableViewController.songs[nextRow]
         
@@ -191,11 +191,11 @@ class SongsViewController: UIViewController {
             if appDelegate.avPlayer!.rate != 0 && appDelegate.avPlayer!.error == nil {
                 appDelegate.avPlayer!.pause()
                 
-                self.playPauseButton.setImage(UIImage(named: "play.png"), for: UIControlState())
+                self.playPauseButton.setImage(UIImage(named: "play.png"), for: UIControl.State())
             } else {
                 appDelegate.avPlayer!.play()
                 
-                self.playPauseButton.setImage(UIImage(named: "pause.png"), for: UIControlState())
+                self.playPauseButton.setImage(UIImage(named: "pause.png"), for: UIControl.State())
             }
         }
     }
@@ -211,10 +211,10 @@ class SongsViewController: UIViewController {
         
         let slider = sender as! UISlider
         
-        appDelegate.avPlayer!.seek(to: CMTimeMake(Int64(slider.value), 1))
+        appDelegate.avPlayer!.seek(to: CMTimeMake(value: Int64(slider.value), timescale: 1))
     }
     
-    func songFinishedPlaying(_ note: Notification) {
+    @objc func songFinishedPlaying(_ note: Notification) {
         self.nextSong(self.nextButton)
     }
 }
